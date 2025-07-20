@@ -18,7 +18,7 @@ local espVisible = true
 local loadingScreen = Instance.new("ScreenGui", PlayerGui)
 loadingScreen.Name = "LoadingScreen"
 
--- 🖋 Container for text
+-- 🖋 Container for all loading text
 local container = Instance.new("Frame", loadingScreen)
 container.Size = UDim2.new(1, 0, 1, 0)
 container.BackgroundTransparency = 1
@@ -27,7 +27,7 @@ container.BackgroundTransparency = 1
 local loadingLabel = Instance.new("TextLabel", container)
 loadingLabel.Size = UDim2.new(1, 0, 0, 50)
 loadingLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-loadingLabel.Position = UDim2.new(0.5, 0, 0.43, 0) -- 🟢 Centered slightly higher
+loadingLabel.Position = UDim2.new(0.5, 0, 0.43, 0)
 loadingLabel.BackgroundTransparency = 1
 loadingLabel.TextColor3 = Color3.new(1, 1, 1)
 loadingLabel.Font = Enum.Font.GothamBold
@@ -38,22 +38,23 @@ loadingLabel.Text = "Loading For The Pet Mutation"
 local waitMessage = Instance.new("TextLabel", container)
 waitMessage.Size = UDim2.new(1, 0, 0, 25)
 waitMessage.AnchorPoint = Vector2.new(0.5, 0.5)
-waitMessage.Position = UDim2.new(0.5, 0, 0.50, 0) -- 🟢 Neatly below main label
+waitMessage.Position = UDim2.new(0.5, 0, 0.50, 0)
 waitMessage.BackgroundTransparency = 1
 waitMessage.TextColor3 = Color3.new(1, 1, 1)
 waitMessage.Font = Enum.Font.Gotham
 waitMessage.TextSize = 20
 waitMessage.Text = "Please wait for 25 seconds, thank you."
 
--- 📝 Credit Text (at the bottom)
-local credit = Instance.new("TextLabel", loadingScreen)
-credit.Size = UDim2.new(1, 0, 0, 25)
-credit.Position = UDim2.new(0, 0, 0.93, 0) -- 🟢 Slightly higher from bottom
+-- 📝 Credit Text (below waitMessage)
+local credit = Instance.new("TextLabel", container)
+credit.Size = UDim2.new(1, 0, 0, 20)
+credit.AnchorPoint = Vector2.new(0.5, 0.5)
+credit.Position = UDim2.new(0.5, 0, 0.56, 0)
 credit.BackgroundTransparency = 1
 credit.TextColor3 = Color3.new(1, 1, 1)
-credit.Font = Enum.Font.Gotham
+credit.Font = Enum.Font.SourceSans -- ✅ Plain font
 credit.TextSize = 16
-credit.Text = "Created by gscriptt"
+credit.Text = "Created by gcscriptt"
 
 -- 🔄 Animate Loading Dots
 task.spawn(function()
@@ -97,14 +98,14 @@ title.Font = Enum.Font.GothamBold
 title.TextSize = 18
 title.Text = "🔍 Pet Mutation Finder"
 
--- 📌 Function to Create Buttons
+-- 📌 Function to Create Buttons (NORMAL FONT + HORIZONTAL)
 local function createButton(text, yPos, color)
     local btn = Instance.new("TextButton", frame)
     btn.Size = UDim2.new(0.9, 0, 0, 35)
     btn.Position = UDim2.new(0.05, 0, 0, yPos)
     btn.BackgroundColor3 = color
     btn.Text = text
-    btn.Font = Enum.Font.GothamMedium
+    btn.Font = Enum.Font.SourceSans -- ✅ Plain horizontal font
     btn.TextSize = 16
     btn.TextColor3 = Color3.new(0, 0, 0)
     btn.AutoButtonColor = false
@@ -129,15 +130,15 @@ end
 local reroll = createButton("🎲 Mutation Reroll", 45, Color3.fromRGB(140, 200, 255))
 local toggle = createButton("👁️ Toggle Mutation", 90, Color3.fromRGB(180, 255, 180))
 
--- 📝 Credit Label
+-- 📝 Credit Label (Plain Font)
 local credit2 = Instance.new("TextLabel", frame)
 credit2.Size = UDim2.new(1, 0, 0, 20)
 credit2.Position = UDim2.new(0, 0, 1, -20)
 credit2.BackgroundTransparency = 1
 credit2.TextColor3 = Color3.fromRGB(200, 200, 200)
-credit2.Font = Enum.Font.Gotham
+credit2.Font = Enum.Font.SourceSans -- ✅ Plain font for GUI credit
 credit2.TextSize = 13
-credit2.Text = "Made by gscriptt"
+credit2.Text = "Made by gcscriptt"
 
 -- 🔍 Find Mutation Machine
 local function findMachine()
