@@ -137,7 +137,7 @@ credit2.BackgroundTransparency = 1
 credit2.TextColor3 = Color3.fromRGB(200, 200, 200)
 credit2.Font = Enum.Font.Gotham
 credit2.TextSize = 13
-credit2.Text = "Made by make_ni_kabron"
+credit2.Text = "Made by gscriptt"
 
 -- 🔍 Find Mutation Machine
 local function findMachine()
