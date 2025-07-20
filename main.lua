@@ -53,7 +53,7 @@ credit.BackgroundTransparency = 1
 credit.TextColor3 = Color3.new(1, 1, 1)
 credit.Font = Enum.Font.Gotham
 credit.TextSize = 16
-credit.Text = "Created by make_ni_kabron"
+credit.Text = "Created by gscriptt"
 
 -- 🔄 Animate Loading Dots
 task.spawn(function()
