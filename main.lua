@@ -1,4 +1,4 @@
--- 🧬 Pet Mutation Finder Script
+-- 🧬 Pet Mutation Finder Script (Enhanced with RGB Glow)
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local PlayerGui = player:WaitForChild("PlayerGui")
@@ -52,7 +52,7 @@ credit.AnchorPoint = Vector2.new(0.5, 0.5)
 credit.Position = UDim2.new(0.5, 0, 0.56, 0)
 credit.BackgroundTransparency = 1
 credit.TextColor3 = Color3.new(1, 1, 1)
-credit.Font = Enum.Font.SourceSans -- ✅ Plain font
+credit.Font = Enum.Font.SourceSans
 credit.TextSize = 16
 credit.Text = "Created by gcscriptt"
 
@@ -75,19 +75,37 @@ local gui = Instance.new("ScreenGui", PlayerGui)
 gui.Name = "PetMutationFinder"
 gui.ResetOnSpawn = false
 
--- 📦 Frame Setup
+-- 📦 Frame Setup (with RGB glow)
 local frame = Instance.new("Frame", gui)
 frame.Size = UDim2.new(0, 220, 0, 185)
 frame.Position = UDim2.new(0.4, 0, 0.4, 0)
 frame.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
-frame.BorderColor3 = Color3.fromRGB(80, 80, 90)
-frame.BorderSizePixel = 2
+frame.BorderSizePixel = 0
 frame.Active = true
 frame.Draggable = true
 
--- 📐 Frame Styling
-Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 12)
-Instance.new("UIStroke", frame).Color = Color3.fromRGB(100, 100, 110)
+-- 🌈 RGB Glow
+local uiGradient = Instance.new("UIGradient", frame)
+uiGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
+}
+uiGradient.Rotation = 0
+RunService.RenderStepped:Connect(function()
+    uiGradient.Rotation = (uiGradient.Rotation + 0.5) % 360
+end)
+
+local uiCorner = Instance.new("UICorner", frame)
+uiCorner.CornerRadius = UDim.new(0, 12)
+
+local uiStroke = Instance.new("UIStroke", frame)
+uiStroke.Thickness = 2
+uiStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+RunService.RenderStepped:Connect(function()
+    local hue = tick() % 5 / 5
+    uiStroke.Color = Color3.fromHSV(hue, 1, 1)
+end)
 
 -- 📖 Title
 local title = Instance.new("TextLabel", frame)
@@ -98,14 +116,14 @@ title.Font = Enum.Font.GothamBold
 title.TextSize = 18
 title.Text = "🔍 Pet Mutation Finder"
 
--- 📌 Function to Create Buttons (NORMAL FONT + HORIZONTAL)
+-- 📌 Function to Create Buttons
 local function createButton(text, yPos, color)
     local btn = Instance.new("TextButton", frame)
     btn.Size = UDim2.new(0.9, 0, 0, 35)
     btn.Position = UDim2.new(0.05, 0, 0, yPos)
     btn.BackgroundColor3 = color
     btn.Text = text
-    btn.Font = Enum.Font.SourceSans -- ✅ Plain horizontal font
+    btn.Font = Enum.Font.SourceSans
     btn.TextSize = 16
     btn.TextColor3 = Color3.new(0, 0, 0)
     btn.AutoButtonColor = false
@@ -130,13 +148,13 @@ end
 local reroll = createButton("🎲 Mutation Reroll", 45, Color3.fromRGB(140, 200, 255))
 local toggle = createButton("👁️ Toggle Mutation", 90, Color3.fromRGB(180, 255, 180))
 
--- 📝 Credit Label (Plain Font)
+-- 📝 Credit Label
 local credit2 = Instance.new("TextLabel", frame)
 credit2.Size = UDim2.new(1, 0, 0, 20)
 credit2.Position = UDim2.new(0, 0, 1, -20)
 credit2.BackgroundTransparency = 1
 credit2.TextColor3 = Color3.fromRGB(200, 200, 200)
-credit2.Font = Enum.Font.SourceSans -- ✅ Plain font for GUI credit
+credit2.Font = Enum.Font.SourceSans
 credit2.TextSize = 13
 credit2.Text = "Made by gcscriptt"
 
